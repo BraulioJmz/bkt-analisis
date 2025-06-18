@@ -265,11 +265,16 @@ st.markdown("""
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
     }
-    
-    /* --- HIDE STREAMLIT DEFAULTS --- */
+      /* --- HIDE STREAMLIT DEFAULTS --- */
     #MainMenu { visibility: hidden; }
     footer { visibility: hidden; }
     header { visibility: hidden; }
+    
+    /* Oculta botón inferior derecho de Streamlit Cloud */
+    .viewerBadge_container__1QSob {display: none !important;}
+    
+    /* Oculta botón de menú superior derecho (tres puntos) */
+    .st-emotion-cache-1avcm0n.ezrtsby0 {display: none !important;}
     
     /* --- SPACING --- */
     .block-container {
