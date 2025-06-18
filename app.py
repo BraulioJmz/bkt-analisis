@@ -13,6 +13,54 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Función de autenticación
+def check_authentication():
+    """Verifica si el usuario está autenticado"""
+    if 'authenticated' not in st.session_state:
+        st.session_state.authenticated = False
+    return st.session_state.authenticated
+
+def login_screen():
+    """Pantalla de login"""
+    # Crear columnas para centrar el formulario
+    col1, col2, col3 = st.columns([1, 2, 1])
+    
+    with col2:
+        
+        
+        st.markdown("### 🔐 **Acceso Autorizado**")
+        st.markdown("---")
+        
+        # Formulario de login
+        with st.form("login_form"):
+            usuario = st.text_input("👤 Usuario:", placeholder="Ingresa tu usuario")
+            password = st.text_input("🔑 Contraseña:", type="password", placeholder="Ingresa tu contraseña")
+            
+            col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
+            with col_btn2:
+                submit_button = st.form_submit_button("🚀 Ingresar", use_container_width=True)
+        
+        if submit_button:
+            if usuario == "admin" and password == "12345678":
+                st.session_state.authenticated = True
+                st.success("✅ ¡Acceso autorizado! Redirigiendo...")
+                st.rerun()
+            else:
+                st.error("❌ Usuario o contraseña incorrectos")
+                st.warning("⚠️ Contacta al administrador si tienes problemas de acceso")
+        
+        st.markdown("</div>", unsafe_allow_html=True)
+
+def logout():
+    """Función para cerrar sesión"""
+    st.session_state.authenticated = False
+    st.rerun()
+
+# Verificar autenticación al inicio
+if not check_authentication():
+    login_screen()
+    st.stop()
+
 # CSS personalizado para una apariencia profesional
 st.markdown("""
 <style>
@@ -294,6 +342,14 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Sidebar mejorado
+st.sidebar.markdown("### 👤 **Usuario Autenticado**")
+st.sidebar.success("🟢 admin")
+
+# Botón de cerrar sesión
+if st.sidebar.button("🚪 Cerrar Sesión", type="secondary", use_container_width=True):
+    logout()
+
+st.sidebar.markdown("---")
 st.sidebar.markdown("### 📁 **Cargar Datos**")
 st.sidebar.markdown("---")
 
