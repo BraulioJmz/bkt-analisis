@@ -5,10 +5,9 @@ import plotly.graph_objects as go
 from datetime import datetime, time
 import numpy as np
 
-# Configuración de página mejorada
 st.set_page_config(
-    page_title="⚡ BKT - Monitoreo Eléctrico",
-    page_icon="⚡",
+    page_title="BKT - Monitoreo Eléctrico",
+    page_icon="logo.png",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -28,7 +27,12 @@ def login_screen():
     with col2:
         
         
-        st.markdown("### 🔐 **Acceso Autorizado**")
+        st.markdown("""
+    <h2 style='text-align: center; font-weight: 600;'>
+        Análisis de Consumo Eléctrico BKT
+    </h2>
+    """, unsafe_allow_html=True)
+        
         st.markdown("---")
         
         # Formulario de login
@@ -38,16 +42,16 @@ def login_screen():
             
             col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
             with col_btn2:
-                submit_button = st.form_submit_button("🚀 Ingresar", use_container_width=True)
+                submit_button = st.form_submit_button("Ingresar", use_container_width=True)
         
         if submit_button:
             if usuario == "admin" and password == "12345678":
                 st.session_state.authenticated = True
-                st.success("✅ ¡Acceso autorizado! Redirigiendo...")
+                st.success("¡Acceso autorizado! Redirigiendo...")
                 st.rerun()
             else:
-                st.error("❌ Usuario o contraseña incorrectos")
-                st.warning("⚠️ Contacta al administrador si tienes problemas de acceso")
+                st.error("Usuario o contraseña incorrectos")
+                st.warning(" Contacta al administrador si tienes problemas de acceso")
         
         st.markdown("</div>", unsafe_allow_html=True)
 
@@ -265,16 +269,11 @@ st.markdown("""
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
     }
-      /* --- HIDE STREAMLIT DEFAULTS --- */
+    
+    /* --- HIDE STREAMLIT DEFAULTS --- */
     #MainMenu { visibility: hidden; }
     footer { visibility: hidden; }
     header { visibility: hidden; }
-    
-    /* Oculta botón inferior derecho de Streamlit Cloud */
-    .viewerBadge_container__1QSob {display: none !important;}
-    
-    /* Oculta botón de menú superior derecho (tres puntos) */
-    .st-emotion-cache-1avcm0n.ezrtsby0 {display: none !important;}
     
     /* --- SPACING --- */
     .block-container {
@@ -341,8 +340,8 @@ maquinas_config = {
 # Header principal mejorado
 st.markdown("""
 <div class="main-header">
-    <h1>⚡ BKT MOBILIARIO - DASHBOARD ELÉCTRICO</h1>
-    <p>Monitoreo en tiempo real del consumo energético de equipos industriales</p>
+    <h1>BKT MOBILIARIO URBANO - DASHBOARD ELÉCTRICO</h1>
+    <p>Monitoreo de consumo eléctrico de la planta</p>
 </div>
 """, unsafe_allow_html=True)
 
